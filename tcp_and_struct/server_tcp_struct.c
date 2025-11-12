@@ -3,35 +3,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-
-typedef struct {
-    int x;
-    int y;
-} Entity;
-
-int recv_full(int sock, void *buffer, size_t size) {
-    size_t total = 0;
-    while (total < size) {
-        ssize_t bytes = recv(sock, (unsigned char*)buffer + total, size - total, 0);
-        if (bytes <= 0) {
-            return -1;
-        }
-        total += bytes;
-    }
-    return 0;
-}
-
-int send_full(int sock, const void *buffer, size_t size) {
-    size_t total = 0;
-    while (total < size) {
-        ssize_t bytes = send(sock, (const unsigned char*)buffer + total, size - total, 0);
-        if (bytes <= 0) {
-            return -1;
-        }
-        total += bytes;
-    }
-    return 0;
-}
+#include "common.h"
+#include "types.h"
 
 int main() {
     int server_sock, client_sock;
