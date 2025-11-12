@@ -4,14 +4,12 @@
 #include <string.h>
 
 int main() {
-    // setup destination (server) address
     struct sockaddr_in serv_addr = {
         .sin_family = AF_INET,
         .sin_port = htons(2112)
     };
     inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr);
 
-    // create UDP socket
     int sock = socket(AF_INET, SOCK_DGRAM, 0);
     if (sock < 0) {
         perror("failed to create socket");
@@ -21,15 +19,13 @@ int main() {
     char buffer[1024] = {0};
     socklen_t serv_len = sizeof(serv_addr);
 
-    // REPL (Read-Eval-Print Loop)
     while (1) {
         printf("> ");
         fgets(buffer, sizeof(buffer), stdin);
-        buffer[strcspn(buffer, "\n")] = 0; // remove newline
+        buffer[strcspn(buffer, "\n")] = 0; 
 
         if (strcmp(buffer, "exit") == 0) break;
 
-        // send message to server
         ssize_t sent = sendto(
             sock,
             buffer,
@@ -43,7 +39,6 @@ int main() {
             continue;
         }
 
-        // receive response from server
         ssize_t num_read = recvfrom(
             sock,
             buffer,

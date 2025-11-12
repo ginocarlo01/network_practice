@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>           // para close()
-#include <arpa/inet.h>        // para socket, bind, listen, accept
-#include <netinet/in.h>       // para struct sockaddr_in
+#include <unistd.h>          
+#include <arpa/inet.h>       
+#include <netinet/in.h>      
 
 int main() {
     int server_sock, client_sock;
