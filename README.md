@@ -26,3 +26,7 @@ gcc tcp_and_struct/client_tcp_struct.c tcp_and_struct/common.c -o output/client_
 ## Run the server and client
 ./output/server_struct  
 ./output/client_struct  
+
+### TCP and UDP
+
+![TCP and UDP network diagram](images/tcp_udp.png)
